@@ -1,0 +1,12 @@
+p 
+  = link_to "New User", new_user_path
+
+p
+  = link_to("<< Back to Menu", users_path, :class => 'back-link')
+
+- @users.each do |u|
+  p 
+    = u.username
+    = link_to  "Edit", edit_user_path(u)
+    = link_to  "Delete", delete_user_path(u)
+

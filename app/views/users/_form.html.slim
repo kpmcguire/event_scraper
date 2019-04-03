@@ -1,0 +1,27 @@
+= error_messages_for(f.object)
+
+/ div
+/   = f.label(:name)
+/   = f.text_field(:name)
+
+h2 OK
+
+div
+  = f.label(:password)
+  = f.password_field(:password)
+
+div
+  = f.label(:first_name)
+  = f.text_field(:first_name)
+
+div
+  = f.label(:last_name)
+  = f.text_field(:last_name)
+
+div
+  = f.label(:username)
+  = f.text_field(:username)
+
+div
+  = f.label(:email)
+  = f.email_field(:email)

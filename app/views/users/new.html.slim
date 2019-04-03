@@ -1,0 +1,13 @@
+= @page_title = "New Users"
+
+= link_to("<< Back to List", users_path, :class => 'back-link')
+
+.users.new
+  h2 Create Admin User
+
+  = form_for(@user) do |f|
+    = render partial: 'form', locals: { :f => f}
+
+    .form-buttons
+      = f.submit("Create User")
+
