@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title EventScraper
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' 
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .navigation
+      = link_to "Events", events_path
+      '  | 
+      = link_to "Venues ", venues_path
+      '  |       
+      = link_to "Organizations ", organizations_path
+    - if !flash[:notice].blank? 
+      .notice
+        = flash[:notice] 
+    = yield 

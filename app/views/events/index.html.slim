@@ -1,35 +1,30 @@
 h1 Listing events
-
 table
   thead
     tr
       th Venue
       th Organization
-      th Integer
       th Name
       th Description
-      th Text
       th Url
       th Cost
       th Start date
       th End date
-      th Url
-      th
-      th
-      th
+      th Show
+      th Edit
+      th Destroy
 
   tbody
     - @events.each do |event|
       tr
-        td = event.venue.name
-        td = event.organization.name
+        td = link_to event.venue.name, venue_path(event.venue_id)
+        td = link_to event.organization.name, organization_path(event.organization_id)
         td = event.name
         td = event.description
         td = event.url
         td = event.cost
         td = event.start_date
         td = event.end_date
-        td = event.url
         td = link_to 'Show', event
         td = link_to 'Edit', edit_event_path(event)
         td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
@@ -37,3 +32,10 @@ table
 br
 
 = link_to 'New Event', new_event_path
+
+h2 Calendar
+
+= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, events| 
+  = date
+  - events.each do |e|
+    p = link_to e.name, event_path(e.id)

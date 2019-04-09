@@ -1,32 +1,30 @@
-p#notice = notice
-
 p
-  strong Venue:
-  = @event.venue.name
+  strong> Venue:
+  = link_to @event.venue.name, venue_path(@event.venue_id)
 p
-  strong Organization:
-  = @event.organization.name
+  strong> Organization:
+  = link_to @event.organization.name, organization_path(@event.organization_id)  
 p
-  strong Name:
+  strong> Name:
   = @event.name
 p
-  strong Description:
+  strong> Description:
   = @event.description
 
 p
-  strong Url:
+  strong> Url:
   = @event.url
 p
-  strong Cost:
+  strong> Cost:
   = @event.cost
 p
-  strong Start date:
+  strong> Start date:
   = @event.start_date
 p
-  strong End date:
+  strong> End date:
   = @event.end_date
 p
-  strong Url:
+  strong> Url:
   = @event.url
 
 => link_to 'Edit', edit_event_path(@event)

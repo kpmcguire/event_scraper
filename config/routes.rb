@@ -8,16 +8,30 @@ Rails.application.routes.draw do
   post 'access/attempt_login'
   get 'access/logout'
 
-  resources :users, :except => [:show] do
+  root :to => 'events#index'
+
+  resources :users do
     member do
       get :delete
     end
   end
+
+  resources :events do
+    member do
+      get :delete
+    end
+  end  
 
   resources :organizations do
     member do
       get :delete
     end
   end
+
+  resources :events do
+    member do
+      get :delete
+    end
+  end  
 
 end

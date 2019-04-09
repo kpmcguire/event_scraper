@@ -1,18 +1,26 @@
-p#notice = notice
-
 p
-  strong Name:
+  strong> Name:
   = @venue.name
 p
-  strong Address:
+  strong> Address:
   = @venue.address
 p
-  strong Description:
+  strong> Description:
   = @venue.description
 p
-  strong Url:
+  strong> Url:
   = @venue.url
+
+p 
+  strong> Events:
+ul
+  - @venue.events.each do |e|
+    li 
+      = link_to e.name, event_path(e.id)
+
 
 => link_to 'Edit', edit_venue_path(@venue)
 '|
 =< link_to 'Back', venues_path
+
+

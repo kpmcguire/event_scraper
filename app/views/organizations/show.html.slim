@@ -1,19 +1,18 @@
-= @page_title = "Organization: #{@organization.name}"
 
-= link_to("<< Back to List", organizations_path)
-
-.organizations
   p 
+    strong> Name: 
     = @organization.name
   p
+    strong> Address:
     = @organization.address
   p 
+    strong> Description:
     = @organization.description
 
-  - @organization.events.each do |e|
-    p 
-      = e.name
-    p
-      = e.url
-    p
-      = e.cost
+  p
+    strong> Events: 
+
+  ul
+    - @organization.events.each do |e|
+      li 
+        = link_to e.name, event_path(e.id)

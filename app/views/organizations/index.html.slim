@@ -1,18 +1,14 @@
-p 
-  = link_to "New Organization", new_organization_path
-
-p
-  = link_to("<< Back to Menu", organizations_path)
+h1 Listing organizations
 
 table
   thead
     tr
-      td Name
-      td Address
-      td Desc
-      td Show
-      td Edit
-      td Destroy
+      th Name
+      th Address
+      th Desc
+      th Show
+      th Edit
+      th Destroy
   tbody
 
 
@@ -25,3 +21,5 @@ table
         td = link_to "Edit", edit_organization_path(o)
         td = link_to "Delete", delete_organization_path(o)
 
+p 
+  = link_to "New Organization", new_organization_path

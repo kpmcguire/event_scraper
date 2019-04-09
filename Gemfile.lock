@@ -147,9 +147,17 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
+    sassc-rails (2.1.0)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    simple_calendar (2.3.0)
+      rails (>= 3.0)
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -206,8 +214,9 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rails (~> 5.2.2)
-  sassc
+  sassc-rails
   selenium-webdriver
+  simple_calendar
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
