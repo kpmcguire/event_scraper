@@ -1,0 +1,13 @@
+= @page_title = "New Organization"
+
+= link_to("<< Back to List", organizations_path)
+
+.organization.new
+  h2 Create Organization
+
+  = form_for(@organization) do |f|
+    = render partial: 'form', locals: { :f => f}
+
+    .form-buttons
+      = f.submit("Create Organization")
+

@@ -1,0 +1,12 @@
+= @page_title = "New Organization"
+
+= link_to("<< Back to List", organizations_path)
+
+.organizations.new
+  h2 Update Organization
+
+  = form_for(@organization) do |f|
+    = render(:partial => 'form', :locals => {:f => f}) 
+
+    .form-buttons
+      = f.submit("Update Organization") 

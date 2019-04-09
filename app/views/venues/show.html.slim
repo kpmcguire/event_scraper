@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @venue.name
+p
+  strong Address:
+  = @venue.address
+p
+  strong Description:
+  = @venue.description
+p
+  strong Url:
+  = @venue.url
+
+=> link_to 'Edit', edit_venue_path(@venue)
+'|
+=< link_to 'Back', venues_path

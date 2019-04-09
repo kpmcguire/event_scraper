@@ -1,0 +1,27 @@
+p 
+  = link_to "New Organization", new_organization_path
+
+p
+  = link_to("<< Back to Menu", organizations_path)
+
+table
+  thead
+    tr
+      td Name
+      td Address
+      td Desc
+      td Show
+      td Edit
+      td Destroy
+  tbody
+
+
+    - @organizations.each do |o|
+      tr
+        td = o.name
+        td = o.address
+        td = o.description
+        td = link_to 'Show', organization_path(o)
+        td = link_to "Edit", edit_organization_path(o)
+        td = link_to "Delete", delete_organization_path(o)
+

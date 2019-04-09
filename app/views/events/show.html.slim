@@ -1,0 +1,34 @@
+p#notice = notice
+
+p
+  strong Venue:
+  = @event.venue.name
+p
+  strong Organization:
+  = @event.organization.name
+p
+  strong Name:
+  = @event.name
+p
+  strong Description:
+  = @event.description
+
+p
+  strong Url:
+  = @event.url
+p
+  strong Cost:
+  = @event.cost
+p
+  strong Start date:
+  = @event.start_date
+p
+  strong End date:
+  = @event.end_date
+p
+  strong Url:
+  = @event.url
+
+=> link_to 'Edit', edit_event_path(@event)
+'|
+=< link_to 'Back', events_path

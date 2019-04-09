@@ -1,0 +1,13 @@
+= @page_title = "Delete Organization"
+
+= link_to("<< Back to List", organizations_path)
+
+h2 Delete
+
+= form_for(@organization, :method => 'delete') do |f| %>
+
+p Are you sure you want to permanently delete this admin user?
+
+= f.object.name
+
+= f.submit("Delete Organization")
