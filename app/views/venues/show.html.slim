@@ -4,6 +4,14 @@ p
 p
   strong> Address:
   = @venue.address
+
+p
+  strong> Lat Long:
+  = @venue.latitude
+  | , 
+  = @venue.longitude
+
+= map(:center => { :latlng => [@venue.latitude, @venue.longitude], :zoom => 18}, :markers => [{ :latlng => [@venue.latitude, @venue.longitude]}]) 
 p
   strong> Description:
   = @venue.description
@@ -23,4 +31,4 @@ ul
 '|
 =< link_to 'Back', venues_path
 
-
+= render partial: "calendar", locals: {events: @venue.events}

@@ -1,18 +1,19 @@
+p 
+  strong> Name: 
+  = @organization.name
+p
+  strong> Address:
+  = @organization.address
+p 
+  strong> Description:
+  = @organization.description
 
-  p 
-    strong> Name: 
-    = @organization.name
-  p
-    strong> Address:
-    = @organization.address
-  p 
-    strong> Description:
-    = @organization.description
+p
+  strong> Events: 
 
-  p
-    strong> Events: 
+ul
+  - @organization.events.each do |e|
+    li 
+      = link_to e.name, event_path(e.id)
 
-  ul
-    - @organization.events.each do |e|
-      li 
-        = link_to e.name, event_path(e.id)
+= render partial: "calendar", locals: {events: @organization.events}

@@ -35,7 +35,4 @@ br
 
 h2 Calendar
 
-= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, events| 
-  = date
-  - events.each do |e|
-    p = link_to e.name, event_path(e.id)
+= render partial: "calendar", locals: {events: @events}

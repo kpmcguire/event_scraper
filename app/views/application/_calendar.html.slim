@@ -1,0 +1,6 @@
+= month_calendar(events: events, attribute: :start_date, end_attribute: :end_date) do |date, events| 
+  span.hidden> = date.strftime("%B")
+  => date.day
+  span.hidden> = date.year
+  - events.each do |e|
+    p = link_to e.name, event_path(e.id)
