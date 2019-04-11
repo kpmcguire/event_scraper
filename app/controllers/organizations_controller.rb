@@ -1,11 +1,12 @@
 class OrganizationsController < ApplicationController
+  before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
   def index
     @organizations = Organization.sorted
   end
 
   def show
-    @organization = Organization.find(params[:id])
+    # @organization = Organization.friendly.find(params[:id])
     # @event = Event.find(params[:event_id])
   end  
 
@@ -25,7 +26,7 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @organization = Organization.find(params[:id])
+    # @organization = Organization.find(params[:id])
   end
 
   def update
@@ -48,6 +49,10 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+  def set_organization
+    @organization = Organization.friendly.find(params[:id])
+  end
 
   def organization_params
     params.require(:organization).permit(:name, :address, :description)

@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem "slim-rails"
 gem "geocoder"
 gem "leaflet-rails"
+gem "friendly_id"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

@@ -1,4 +1,8 @@
 p
+strong> Name:
+= @venue.friendly_id
+
+p
   strong> Name:
   = @venue.name
 p
@@ -11,7 +15,8 @@ p
   | , 
   = @venue.longitude
 
-= map(:center => { :latlng => [@venue.latitude, @venue.longitude], :zoom => 18}, :markers => [{ :latlng => [@venue.latitude, @venue.longitude]}]) 
+= render partial: "map", locals: {latitude: @venue.latitude, longitude: @venue.longitude, name: @venue.name}
+
 p
   strong> Description:
   = @venue.description

@@ -1,4 +1,8 @@
 p
+  strong> Slug:
+  = @event.friendly_id
+
+p
   strong> Venue:
   = link_to @event.venue.name, venue_path(@event.venue_id)
 p
@@ -14,6 +18,7 @@ p
 p
   strong> Url:
   = @event.url
+
 p
   strong> Cost:
   = @event.cost
@@ -26,6 +31,9 @@ p
 p
   strong> Url:
   = @event.url
+
+= render partial: "map", locals: {latitude: @event.venue.latitude, longitude: @event.venue.longitude, name: @event.venue.name}
+
 
 => link_to 'Edit', edit_event_path(@event)
 '|

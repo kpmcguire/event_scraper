@@ -1,0 +1,9 @@
+.map-wrapper
+    = map(:center => {\
+        :latlng => [latitude, longitude],\
+        :zoom => 18\
+    },\
+    :markers => [{\
+        :latlng => [latitude, longitude],\
+        :popup => name\
+    }])
