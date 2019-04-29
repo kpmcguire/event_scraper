@@ -1,8 +1,9 @@
 class Venue < ApplicationRecord
   has_many :events
   has_many :organizations, :through => :events
+  has_one :source
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, :unless => :latitude?
 
   scope :sorted, lambda { order("name ASC") }
 

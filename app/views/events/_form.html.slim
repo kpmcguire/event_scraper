@@ -8,10 +8,8 @@
 
   .field
     = f.select(:venue_id, @venues.map {|v| [v.name, v.id]})
-
   .field
     = f.select(:organization_id, @organizations.map {|o| [o.name, o.id]})
-
   .field
     = f.label :name
     = f.text_field :name
@@ -25,11 +23,11 @@
     = f.label :cost
     = f.text_field :cost
   .field
-    = f.label :start_date
-    = f.datetime_select :start_date
+    = f.label :start_time
+    = f.datetime_select :start_time
   .field
-    = f.label :end_date
-    = f.datetime_select :end_date
+    = f.label :end_time
+    = f.datetime_select :end_time
   .field
     = f.label :url
     = f.text_field :url

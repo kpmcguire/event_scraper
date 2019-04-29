@@ -1,0 +1,61 @@
+= form_for @source do |f|
+  - if @source.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@source.errors.count, "error")} prohibited this source from being saved:"
+      ul
+        - @source.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :venue_id
+    = f.select(:venue_id, @venues.map {|v| [v.name, v.id]})
+  .field
+    = f.label :feed_type
+    = f.number_field :feed_type
+  .field
+    = f.label :feed_url
+    = f.text_field :feed_url
+  .field
+    = f.label "Feed ID"
+    = f.number_field :lookup_id
+
+  .field
+    = f.label :lookup_remote_id
+    = f.text_field :lookup_remote_id
+    = f.label :mapto_id
+    = f.text_field :mapto_id
+
+  .field
+    = f.label :lookup_name
+    = f.text_field :lookup_name
+    = f.label :mapto_name
+    = f.text_field :mapto_name
+  .field
+    = f.label :lookup_description
+    = f.text_field :lookup_description
+    = f.label :mapto_description
+    = f.text_field :mapto_description
+  .field
+    = f.label :lookup_url
+    = f.text_field :lookup_url
+    = f.label :mapto_url
+    = f.text_field :mapto_url
+  .field
+    = f.label :lookup_cost
+    = f.text_field :lookup_cost
+    = f.label :mapto_cost
+    = f.text_field :mapto_cost
+  .field
+    = f.label :lookup_start_time
+    = f.text_field :lookup_start_time
+    = f.label :mapto_start_time
+    = f.text_field :mapto_start_time
+  .field
+    = f.label :lookup_end_time
+    = f.text_field :lookup_end_time
+    = f.label :mapto_end_time
+    = f.text_field :mapto_end_time
+  .actions = f.submit

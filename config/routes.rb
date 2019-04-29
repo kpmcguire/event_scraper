@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :events
-  resources :venues
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'access/menu'
@@ -20,6 +19,12 @@ Rails.application.routes.draw do
     member do
       get :delete
     end
+
+    collection {post :import}
+
+    collection do
+      delete 'remove_all'
+    end
   end  
 
   resources :organizations do
@@ -33,5 +38,8 @@ Rails.application.routes.draw do
       get :delete
     end
   end  
+
+  resources :sources
+  resources :venues  
 
 end

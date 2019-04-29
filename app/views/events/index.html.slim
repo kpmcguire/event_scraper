@@ -1,4 +1,9 @@
 h1 Listing events
+
+= form_tag(remove_all_events_path, method: :delete)
+  = submit_tag("Delete all")
+
+
 table
   thead
     tr
@@ -17,14 +22,18 @@ table
   tbody
     - @events.each do |event|
       tr
-        td = link_to event.venue.name, venue_path(event.venue_id)
-        td = link_to event.organization.name, organization_path(event.organization_id)
+        td
+          - if event.try(:venue)
+            = link_to event.venue.name, venue_path(event.venue_id)
+        td
+          - if event.try(:organization)
+            = link_to event.organization.name, organization_path(event.organization_id)
         td = event.name
         td = event.description
         td = event.url
         td = event.cost
-        td = event.start_date
-        td = event.end_date
+        td = event.start_time
+        td = event.end_time
         td = link_to 'Show', event
         td = link_to 'Edit', edit_event_path(event)
         td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
@@ -36,3 +45,8 @@ br
 h2 Calendar
 
 = render partial: "calendar", locals: {events: @events}
+
+h3 Import CSV
+= form_tag import_events_path, multipart: true do
+  = file_field_tag :file
+  = submit_tag "Import CSV"

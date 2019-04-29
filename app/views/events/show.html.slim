@@ -4,10 +4,12 @@ p
 
 p
   strong> Venue:
-  = link_to @event.venue.name, venue_path(@event.venue_id)
+  - if @event.try(:venue)
+    = link_to @event.venue.name, venue_path(@event.venue_id)
 p
   strong> Organization:
-  = link_to @event.organization.name, organization_path(@event.organization_id)  
+  - if @event.try(:organization)
+    = link_to @event.organization.name, organization_path(@event.organization_id)  
 p
   strong> Name:
   = @event.name
@@ -24,18 +26,21 @@ p
   = @event.cost
 p
   strong> Start date:
-  = @event.start_date
+  = @event.start_time
 p
   strong> End date:
-  = @event.end_date
+  = @event.end_time
 p
   strong> Url:
   = @event.url
 
-= render partial: "map", locals: {latitude: @event.venue.latitude, longitude: @event.venue.longitude, name: @event.venue.name}
+- if @event.try(:venue)
+
+  = render partial: "map", locals: {latitude: @event.venue.latitude, longitude: @event.venue.longitude, name: @event.venue.name}
 
 
 => link_to 'Edit', edit_event_path(@event)
 '|
 =< link_to 'Back', events_path
 
+= @event.attributes

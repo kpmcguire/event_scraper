@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 1
+  feed_url: MyString
+  lookup_id: 1
+  lookup_name: MyString
+  lookup_description: MyString
+  lookup_url: MyString
+  lookup_cost: MyString
+  lookup_start_time: MyString
+  lookup_end_time: MyString
+
+two:
+  type: 1
+  feed_url: MyString
+  lookup_id: 1
+  lookup_name: MyString
+  lookup_description: MyString
+  lookup_url: MyString
+  lookup_cost: MyString
+  lookup_start_time: MyString
+  lookup_end_time: MyString

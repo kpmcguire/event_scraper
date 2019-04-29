@@ -23,7 +23,10 @@ p
 p
   strong> Url:
   = @venue.url
-
+  - if @venue.try(:remote_id)  
+    p
+      strong> Remote ID:
+      = @venue.remote_id
 p 
   strong> Events:
 ul

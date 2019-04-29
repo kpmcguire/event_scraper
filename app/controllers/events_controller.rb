@@ -7,6 +7,11 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def import
+    Event.import(params[:file])
+    redirect_to events_path, notice: "Events imported"
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show
@@ -67,6 +72,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def remove_all
+    Event.destroy_all
+    redirect_to events_path, notice: "All Events Deleted"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -75,6 +85,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:venue_id, :organization_id, :integer, :name, :description, :text, :url, :cost, :start_date, :end_date, :url)
+      params.require(:event).permit(:venue_id, :organization_id, :integer, :name, :description, :text, :url, :cost, :start_time, :end_time, :url)
     end
 end

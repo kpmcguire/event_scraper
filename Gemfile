@@ -19,6 +19,8 @@ gem "slim-rails"
 gem "geocoder"
 gem "leaflet-rails"
 gem "friendly_id"
+gem "rufus-scheduler"
+gem "httparty"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

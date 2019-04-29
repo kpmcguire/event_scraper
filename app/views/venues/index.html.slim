@@ -7,6 +7,7 @@ table
       th Address
       th Description
       th Url
+      th Remote ID
       th Show
       th Edit
       th Destroy
@@ -18,6 +19,9 @@ table
         td = venue.address
         td = venue.description
         td = venue.url
+        td
+          - if venue.try(:remote_id)
+            = venue.remote_id
         td = link_to 'Show', venue
         td = link_to 'Edit', edit_venue_path(venue)
         td = link_to 'Destroy', venue, data: { confirm: 'Are you sure?' }, method: :delete

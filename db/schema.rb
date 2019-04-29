@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_202406) do
+ActiveRecord::Schema.define(version: 2019_04_25_023605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(version: 2019_04_10_202406) do
     t.text "description"
     t.string "url"
     t.float "cost"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "remote_id"
     t.index ["name"], name: "index_events_on_name"
     t.index ["organization_id"], name: "index_events_on_organization_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
@@ -55,6 +56,30 @@ ActiveRecord::Schema.define(version: 2019_04_10_202406) do
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
+  create_table "sources", force: :cascade do |t|
+    t.integer "feed_type"
+    t.string "feed_url"
+    t.integer "lookup_id"
+    t.string "lookup_name"
+    t.string "lookup_description"
+    t.string "lookup_url"
+    t.string "lookup_cost"
+    t.string "lookup_start_time"
+    t.string "lookup_end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "venue_id"
+    t.string "name"
+    t.string "lookup_remote_id"
+    t.string "mapto_name"
+    t.string "mapto_description"
+    t.string "mapto_url"
+    t.string "mapto_cost"
+    t.string "mapto_start_time"
+    t.string "mapto_end_time"
+    t.string "mapto_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", limit: 50
     t.string "last_name", limit: 50
@@ -76,7 +101,9 @@ ActiveRecord::Schema.define(version: 2019_04_10_202406) do
     t.float "latitude"
     t.float "longitude"
     t.string "slug"
+    t.integer "remote_id"
     t.index ["name"], name: "index_venues_on_name"
+    t.index ["remote_id"], name: "index_venues_on_remote_id"
     t.index ["slug"], name: "index_venues_on_slug", unique: true
   end
 
