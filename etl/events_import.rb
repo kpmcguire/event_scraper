@@ -1,5 +1,4 @@
 require_relative '../config/environment'
-
 require 'csv'
 
 Dir.glob(["events_localist_csv/*.csv", "events_ticketfly_csv/*.csv"]).each do |file|
