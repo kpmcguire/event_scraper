@@ -20,8 +20,6 @@ Rails.application.routes.draw do
       get :delete
     end
 
-    collection {post :import}
-
     collection do
       delete 'remove_all'
     end
@@ -32,12 +30,6 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-
-  resources :events do
-    member do
-      get :delete
-    end
-  end  
 
   resources :sources
   resources :venues  

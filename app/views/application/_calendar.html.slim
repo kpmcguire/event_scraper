@@ -2,5 +2,16 @@
   span.hidden> = date.strftime("%B")
   => date.day
   span.hidden> = date.year
-  - events.each do |e|
+  - events.take(3).each do |e|
     p = link_to e.name, event_path(e.id)
+  - if events.length > 3
+    p
+      = link_to events_path(:day => date.strftime("%F")) do
+        | All events for 
+        span> = date.strftime("%B")
+        => date.day
+        span.hidden> = date.year
+      end
+
+
+      

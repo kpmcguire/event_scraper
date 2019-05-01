@@ -4,7 +4,14 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @all_events = Event.all
+
+    if params[:day]
+      day = Date.parse(params[:day])
+      @events = Event.where(:start_time => day.beginning_of_day..day.end_of_day).paginate(page: params[:page])
+    else
+      @events = Event.paginate(page: params[:page])
+    end 
   end
 
   def import
