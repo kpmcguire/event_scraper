@@ -1,8 +1,8 @@
 require_relative '../config/environment'
 require 'httparty'
 require 'csv'
-# require 'aws-sdk-s3'  # v2: require 'aws-sdk'
 require 'fog-aws'
+require 'dotenv'
 Dotenv.load("#{Rails.root}/.env")
 
 class Send_to_s3

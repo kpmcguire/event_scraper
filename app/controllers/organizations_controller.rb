@@ -1,5 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :confirm_logged_in  
+
 
   def index
     @organizations = Organization.sorted
