@@ -91,6 +91,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    dotenv (2.7.2)
     erubi (1.8.0)
     et-orbi (1.1.8)
       tzinfo
@@ -248,6 +249,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dotenv
   friendly_id
   geocoder
   httparty

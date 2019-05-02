@@ -11,5 +11,4 @@ Aws.config.update({
 # puts S3_BUCKET.name
 
 puts ENV['S3_BUCKET']
-
 puts ENV['AWS_ACCESS_KEY_ID']
