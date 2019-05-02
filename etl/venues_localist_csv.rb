@@ -1,6 +1,4 @@
-require_relative '../config/environment'
-require 'httparty'
-require 'csv'
+require_relative 'shared'
 
 ITHACA_LOCALIST_URI = "https://events.ithaca.edu/api/2/places"
 CORNELL_LOCALIST_URI = "https://events.cornell.edu/api/2/places"
@@ -23,7 +21,7 @@ class Feed
     output_fields = ['remote_id', 'name', 'url', 'address', 'latitude', 'longitude']
 
     for i in @pages['current']..@pages['total']
-    # for i in @pages['current']..2
+    # for i in @pages['current']..1
       @response = HTTParty.get(uri, :query => {'page' => i}, :headers => {"User-Agent" => "Safari"}, :verify => false)
 
       @response['places'].each do |place|
@@ -49,7 +47,9 @@ class Feed
         row << place
       end
     end
-    FileUtils.move filename, "venues_csv/#{filename}"
+
+    file = Send_to_s3.new('venues_csv', filename)
+
   end
 
 end

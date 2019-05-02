@@ -1,9 +1,24 @@
 # require 'rufus-scheduler'
+# require_relative '../../config/environment'
 
-# s = Rufus::Scheduler.singleton
+# s = Rufus::Scheduler.new
+
+# s.every "10s" do
+#   puts "ok"
+#   sleep 12
+#   puts "ko"
+# end
+
+
+
+# s.at 'every thursday at 12:46pm' do
+#   puts 'getting from ticketfly'
+#   system("ruby #{Rails.root}/etl/events_ticketfly_csv.rb")
+#   puts 'getting from ticketfly is done'
+# end
 
 # s.at 'every monday and wednesday and friday at 4:00am' do
-#   system("ruby etl/events_ticketfly_csv.rb")
+#   system("ruby #{Rails.root}/etl/events_ticketfly_csv.rb")
 # end
 
 # s.at 'every monday and wednesday and friday at 4:30am' do

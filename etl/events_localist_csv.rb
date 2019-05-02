@@ -1,6 +1,4 @@
-require_relative '../config/environment'
-require 'httparty'
-require 'csv'
+require_relative 'shared'
 
 ITHACA_LOCALIST_URI = "https://events.ithaca.edu/api/2/events"
 CORNELL_LOCALIST_URI = "https://events.cornell.edu/api/2/events"
@@ -54,18 +52,12 @@ class Feed
         row << event
       end
     end
-    
-    FileUtils.move filename, "events_localist_csv/#{filename}"
+
+    file = Send_to_s3.new("events_localist_csv", filename)
+
   end
 
 end
-
-
-# Venue.all.each do |venue|
-#   if (venue.remote_id?)
-#     venue.name = Feed.new(TICKETFLY_URI, venue.remote_id, venue.id)
-#   end
-# end
 
 ithaca_college = Feed.new(ITHACA_LOCALIST_URI, 'localist-ithaca')
 cornell_university = Feed.new(CORNELL_LOCALIST_URI, 'localist-cornell')

@@ -1,5 +1,4 @@
-require_relative '../config/environment'
-require 'csv'
+require_relative 'shared'
 
 Dir.glob(["events_localist_csv/*.csv", "events_ticketfly_csv/*.csv"]).each do |file|
   CSV.foreach(file, headers: true) do |row|

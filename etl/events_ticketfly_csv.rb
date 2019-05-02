@@ -1,6 +1,4 @@
-require_relative '../config/environment'
-require 'httparty'
-require 'csv'
+require_relative 'shared'
 
 TICKETFLY_URI = "http://www.ticketfly.com/api/events/upcoming.json"
 
@@ -22,7 +20,6 @@ class Feed
   def write_csv
     input_fields = ['venue_id', 'id', 'name', 'ticketPurchaseUrl', 'ticketPrice', 'doorsDate', 'eventDescription']
     output_fields = [:venue_id, :remote_id, :name, :url, :cost, :start_time, :description]  
-
 
     timestamp = Time.now.strftime("%Y%m%dT%H%M%S")
     filename = "ticketfly-#{@org_or_venue}-#{@venue_remote_id}-#{timestamp}.csv"
@@ -49,7 +46,8 @@ class Feed
       end
     end
     
-    FileUtils.move filename, "events_ticketfly_csv/#{filename}"
+    file = Send_to_s3.new('events_ticketfly_csv', filename)
+
   end
 end
 
