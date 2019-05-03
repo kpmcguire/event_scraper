@@ -1,7 +1,8 @@
 h1 Listing events
 
-= form_tag(remove_all_events_path, method: :delete)
-  = submit_tag("Delete all")
+- if session[:user_id]
+  = form_tag(remove_all_events_path, method: :delete)
+    = submit_tag("Delete all")
 
 table
   thead
@@ -15,8 +16,9 @@ table
       th Start date
       th End date
       th Show
-      th Edit
-      th Destroy
+      - if session[:user_id]
+        th Edit
+        th Destroy
 
   tbody
     - @events.each do |event|
@@ -34,14 +36,16 @@ table
         td = event.start_time
         td = event.end_time
         td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+        - if session[:user_id]
+          td = link_to 'Edit', edit_event_path(event)
+          td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
 = will_paginate @events
 
-= link_to 'New Event', new_event_path
+- if session[:user_id]
+  = link_to 'New Event', new_event_path
 
 h2 Calendar
 

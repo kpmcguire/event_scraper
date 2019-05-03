@@ -1,12 +1,11 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in  
-
+  before_action :confirm_logged_in, only: [:edit, :update, :destroy, :new, :create]
+ 
   # GET /venues
   # GET /venues.json
   def index
     @venues = Venue.paginate(page: params[:page])
-    
   end
 
   # GET /venues/1

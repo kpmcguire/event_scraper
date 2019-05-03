@@ -9,8 +9,9 @@ table
       th Url
       th Remote ID
       th Show
-      th Edit
-      th Destroy
+      - if session[:user_id]
+        th Edit
+        th Destroy
 
   tbody
     - @venues.each do |venue|
@@ -23,12 +24,14 @@ table
           - if venue.try(:remote_id)
             = venue.remote_id
         td = link_to 'Show', venue
-        td = link_to 'Edit', edit_venue_path(venue)
-        td = link_to 'Destroy', venue, data: { confirm: 'Are you sure?' }, method: :delete
+        - if session[:user_id]
+          td = link_to 'Edit', edit_venue_path(venue)
+          td = link_to 'Destroy', venue, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
 = will_paginate @venues
 
-= link_to 'New Venue', new_venue_path
+- if session[:user_id]
+  = link_to 'New Venue', new_venue_path
 

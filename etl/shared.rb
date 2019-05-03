@@ -5,6 +5,7 @@ require 'fog-aws'
 require 'dotenv'
 Dotenv.load("#{Rails.root}/.env")
 
+
 class Send_to_s3
   def initialize(path, filename)
     @path = path

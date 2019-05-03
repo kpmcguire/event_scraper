@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in  
+  before_action :confirm_logged_in, only: [:edit, :update, :destroy, :new, :create, :remove_all]
 
   # GET /events
   # GET /events.json
@@ -13,11 +13,6 @@ class EventsController < ApplicationController
     else
       @events = Event.paginate(page: params[:page])
     end 
-  end
-
-  def import
-    Event.import(params[:file])
-    redirect_to events_path, notice: "Events imported"
   end
 
   # GET /events/1
