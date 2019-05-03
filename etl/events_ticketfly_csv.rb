@@ -22,7 +22,7 @@ class Feed
     output_fields = [:venue_id, :remote_id, :name, :url, :cost, :start_time, :description]  
 
     timestamp = Time.now.strftime("%Y%m%dT%H%M%S")
-    filename = "ticketfly-#{@org_or_venue}-#{@venue_remote_id}-#{timestamp}.csv"
+    filename = "ticketfly-#{@org_or_venue}-#{@venue_remote_id}.csv"
 
     CSV.open( filename, 'w' ) do |row|
       row << output_fields

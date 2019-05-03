@@ -13,7 +13,7 @@ class Feed
     @pages = @pages['page']
 
     timestamp = Time.now.strftime("%Y%m%dT%H%M%S")
-    filename = "#{filename}-#{timestamp}.csv"    
+    filename = "#{filename}.csv"    
 
     sorted_event = []
 

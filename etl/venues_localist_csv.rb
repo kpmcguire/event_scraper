@@ -15,7 +15,7 @@ class Feed
     sorted_place = []
 
     timestamp = Time.now.strftime("%Y%m%dT%H%M%S")
-    filename = "#{filename}-#{timestamp}.csv"
+    filename = "#{filename}.csv"
 
     input_fields = ['id', 'display_name', 'localist_url', 'address', 'latitude', 'longitude']
     output_fields = ['remote_id', 'name', 'url', 'address', 'latitude', 'longitude']
