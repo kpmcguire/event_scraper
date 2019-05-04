@@ -12,10 +12,6 @@ namespace :events do
     system("ruby #{Rails.root}/etl/venues_localist_csv.rb")
   end
 
-  task :download_csvs do
-    system("ruby #{Rails.root}/etl/get_csv_from_s3.rb")
-  end
-
   task  :import_events do
     system("ruby #{Rails.root}/etl/events_import.rb")
   end

@@ -24,10 +24,8 @@ class Send_to_s3
   end
 
   def send_it
-    local_path = "#{Rails.root}/etl/#{@path}/#{@filename}"
+    local_path = "#{Rails.root}/etl/#{@filename}"
     s3_path = "#{@path}/#{@filename}"
-
-    FileUtils.move @filename, "#{Rails.root}/etl/#{@path}/#{@filename}"
 
     file = @directory.files.new({
       :key    => s3_path,

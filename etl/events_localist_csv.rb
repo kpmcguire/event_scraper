@@ -45,7 +45,7 @@ class Feed
       sleep 10
     end
 
-    CSV.open( filename, 'w' ) do |row|
+    CSV.open( "#{Rails.root}/etl/#{filename}", 'w' ) do |row|
       row << output_fields
 
       sorted_event.each do |event|

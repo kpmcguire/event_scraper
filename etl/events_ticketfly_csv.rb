@@ -24,7 +24,8 @@ class Feed
     timestamp = Time.now.strftime("%Y%m%dT%H%M%S")
     filename = "ticketfly-#{@org_or_venue}-#{@venue_remote_id}.csv"
 
-    CSV.open( filename, 'w' ) do |row|
+
+    CSV.open( "#{Rails.root}/etl/#{filename}", 'w' ) do |row|
       row << output_fields
 
       @events['events'].each do |event|
