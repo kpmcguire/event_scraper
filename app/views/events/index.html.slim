@@ -30,7 +30,9 @@ table
           - if event.try(:organization)
             = link_to event.organization.name, organization_path(event.organization_id)
         td = event.name
-        td = event.description.truncate_words(20)
+        td
+          - if event.try(:description)
+            = event.description.truncate_words(20)
         td = event.url
         td = event.cost
         td = event.start_time

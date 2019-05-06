@@ -1,23 +1,15 @@
 namespace :events do
-  task :create_ticketfly_csv do
-    system("ruby #{Rails.root}/etl/events_ticketfly_csv.rb")
+  task :import do
+    if Time.now.monday? || Time.now.wednesday? || Time.now.friday?
+      system("ruby #{Rails.root}/etl/events_import_ticketfly.rb")
+    end
+
+    if Time.now.tuesday? || Time.now.thursday?
+      system("ruby #{Rails.root}/etl/events_import_localist.rb")
+    end
+
+    if Time.now.sunday?
+      system("ruby #{Rails.root}/etl/venues_import_localist.rb")
+    end    
   end
-
-  task :create_localist_events_csv do
-    system("ruby #{Rails.root}/etl/events_localist_csv.rb")
-
-  end
-
-  task :create_localist_venues_csv do
-    system("ruby #{Rails.root}/etl/venues_localist_csv.rb")
-  end
-
-  task  :import_events do
-    system("ruby #{Rails.root}/etl/events_import.rb")
-  end
-
-  task :import_venues do
-    system("ruby #{Rails.root}/etl/venues_import.rb")
-  end
-
 end

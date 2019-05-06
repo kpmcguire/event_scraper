@@ -23,15 +23,21 @@ Rails.application.routes.draw do
     collection do
       delete 'remove_all'
     end
-  end  
+  end 
+  
+  resources :venues do
+    member do
+      get :delete
+    end
+
+    collection do
+      delete 'remove_all'
+    end
+  end   
 
   resources :organizations do
     member do
       get :delete
     end
   end
-
-  resources :sources
-  resources :venues  
-
 end
