@@ -1,7 +1,9 @@
 p
+  strong> remote id:
+  = @event.remote_id
+p
   strong> Slug:
   = @event.friendly_id
-
 p
   strong> Venue:
   - if @event.try(:venue)

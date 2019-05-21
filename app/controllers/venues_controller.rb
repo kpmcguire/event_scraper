@@ -5,7 +5,7 @@ class VenuesController < ApplicationController
   # GET /venues
   # GET /venues.json
   def index
-    @venues = Venue.paginate(page: params[:page])
+    @venues = Venue.order(:name).paginate(page: params[:page])
   end
 
   # GET /venues/1

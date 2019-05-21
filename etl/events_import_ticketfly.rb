@@ -42,7 +42,11 @@ class Feed
 
       pholder['venue_id'] = @venue_id
 
-      Event.where(name: pholder['name'], start_time: pholder['start_time']).first_or_create(pholder)
+      # puts pholder
+
+      Event.where(remote_id: pholder['remote_id']).first_or_create(pholder)
+
+      # Event.where(name: pholder['name'], start_time: pholder['start_time']).first_or_create(pholder)
     end
   end
 end

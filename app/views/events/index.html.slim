@@ -12,6 +12,7 @@ table
       th Name
       th Description
       th Url
+      th Remote ID
       th Cost
       th Start date
       th End date
@@ -34,6 +35,7 @@ table
           - if event.try(:description)
             = event.description.truncate_words(20)
         td = event.url
+        td = event.remote_id
         td = event.cost
         td = event.start_time
         td = event.end_time

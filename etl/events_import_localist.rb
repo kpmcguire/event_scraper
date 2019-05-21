@@ -14,8 +14,8 @@ class Feed
 
     input_fields = ['venue_id', 'id', 'title', 'localist_url', 'start', 'ticket_cost', 'description']
 
-    for i in @pages['current']..@pages['total']
-    # for i in @pages['current']..1
+    # for i in @pages['current']..@pages['total']
+    for i in @pages['current']..1
       @response = HTTParty.get(uri, :query => {'page' => i,'days' => '370' }, :headers => {"User-Agent" => "Safari"}, :verify => false)
 
       input_fields = ['venue_id', 'id', 'title', 'localist_url', 'start', 'ticket_cost', 'description']
@@ -44,9 +44,9 @@ class Feed
 
         pholder.keys.each { |k| pholder[ mappings[k] ] = pholder.delete(k) if mappings[k] }
 
-        puts pholder
+        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder)
 
-        Event.where(name: pholder['name'], start_time: pholder['start_time']).first_or_create(pholder)
+        # Event.where(name: pholder['name'], start_time: pholder['start_time']).first_or_create(pholder)
 
       end        
 
