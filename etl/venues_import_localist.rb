@@ -36,6 +36,8 @@ class Feed
 
         pholder.keys.each { |k| pholder[ mappings[k] ] = pholder.delete(k) if mappings[k] }
 
+        puts pholder
+
         Venue.where(remote_id: pholder['remote_id']).first_or_create(pholder)
 
       end        
