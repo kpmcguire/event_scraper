@@ -42,11 +42,16 @@ class Feed
 
       pholder['venue_id'] = @venue_id
 
-      # puts pholder
+      if @venue_remote_id == 13897
+        org = Organization.find_by(name: 'The Haunt')
+        pholder['organization_id'] = org.id
+      elsif @venue_remote_id == 3273
+        org = Organization.find_by(name: 'State Theatre')
+        pholder['organization_id'] = org.id
+      end
 
       Event.where(remote_id: pholder['remote_id']).first_or_create(pholder)
 
-      # Event.where(name: pholder['name'], start_time: pholder['start_time']).first_or_create(pholder)
     end
   end
 end
@@ -54,8 +59,8 @@ end
 
 ticketfly_venues = []
 
-ticketfly_venues << Venue.find_by(remote_id: 13897)
-ticketfly_venues << Venue.find_by(remote_id: 3273)
+ticketfly_venues << Venue.find_by(remote_id: 13897) # the haunt
+ticketfly_venues << Venue.find_by(remote_id: 3273) #state theater
 
 ticketfly_venues.each do |venue|
   if (venue.remote_id?)

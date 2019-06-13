@@ -41,7 +41,7 @@ class OrganizationsController < ApplicationController
   end
 
   def delete
-    @organization = Organization.find(params[:id])
+    @organization = Organization.friendly.find(params[:id])
   end  
 
   def destroy

@@ -4,10 +4,7 @@
 
 h2 Delete
 
-= form_for(@organization, :method => 'delete') do |f| %>
-
-p Are you sure you want to permanently delete this admin user?
-
-= f.object.name
-
-= f.submit("Delete Organization")
+= form_for(@organization, :method => 'delete') do |f| 
+  p Are you sure you want to permanently delete this organization?
+  = f.object.name
+  = f.submit("Delete Organization")

@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
-  before_action :confirm_logged_in, only: [:edit, :update, :destroy, :new, :create]
+  before_action :confirm_logged_in, only: [:edit, :update, :destroy, :new, :create, :remove_all]
  
   # GET /venues
   # GET /venues.json

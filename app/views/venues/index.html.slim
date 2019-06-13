@@ -1,8 +1,8 @@
 h1 Listing venues
 
 - if session[:user_id]
-= form_tag(remove_all_venues_path, method: :delete)
-  = submit_tag("Delete all")
+  = form_tag(remove_all_venues_path, method: :delete)
+    = submit_tag("Delete all")
 
 table
   thead

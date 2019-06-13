@@ -5,8 +5,8 @@ CORNELL_LOCALIST_URI = "https://events.cornell.edu/api/2/events"
 VISITITHACA_LOCALIST_URI = "https://events.visitithaca.com/api/2/events"
 
 class Feed
-
-  def initialize(uri, filename)    
+   
+  def initialize(uri, orgstring)    
     
     @pages = HTTParty.get(uri, :query => {'page' => 1, 'days' => '370' }, :headers => {"User-Agent" => "Safari"}, :verify => false)
 
@@ -44,16 +44,28 @@ class Feed
 
         pholder.keys.each { |k| pholder[ mappings[k] ] = pholder.delete(k) if mappings[k] }
 
-        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder)
 
-        # Event.where(name: pholder['name'], start_time: pholder['start_time']).first_or_create(pholder)
+        if orgstring == 'localist-ithaca'
+          org = Organization.find_by(name: 'Ithaca College')
+          pholder['organization_id'] = org.id
+
+
+        elsif orgstring == 'localist-cornell'
+          org = Organization.find_by(name: 'Cornell University')
+          pholder['organization_id'] = org.id
+
+        elsif orgstring == 'localist-visitithaca'
+          org = Organization.find_by(name: 'Visit Ithaca')
+          pholder['organization_id'] = org.id
+        end
+
+        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder)
 
       end        
 
       sleep 10
     end
   end
-
 end
 
 ithaca_college = Feed.new(ITHACA_LOCALIST_URI, 'localist-ithaca')
