@@ -37,18 +37,24 @@ class Feed
         end      
 
         venue_id = e['event']['venue_id']
-        local_venue_id = Venue.where(remote_id: venue_id).pluck(:id).first
-        e['event']['venue_id'] = local_venue_id
+
+        if venue_id 
+          local_venue_id = Venue.where(remote_id: venue_id).pluck(:id).first
+          e['event']['venue_id'] = local_venue_id          
+        else
+          venue_pholder = {}
+          venue_pholder[:name] = e['event']['location_name']
+          venue_pholder[:address] = e['event']['address']
+          Venue.where(name: e['event']['location_name']).first_or_create(venue_pholder).update(venue_pholder)
+        end
 
         pholder = e['event'].select { |k, v| input_fields.include? k }
 
         pholder.keys.each { |k| pholder[ mappings[k] ] = pholder.delete(k) if mappings[k] }
 
-
         if orgstring == 'localist-ithaca'
           org = Organization.find_by(name: 'Ithaca College')
           pholder['organization_id'] = org.id
-
 
         elsif orgstring == 'localist-cornell'
           org = Organization.find_by(name: 'Cornell University')
@@ -59,7 +65,7 @@ class Feed
           pholder['organization_id'] = org.id
         end
 
-        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder)
+        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder).update(pholder)
 
       end        
 

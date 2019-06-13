@@ -11,7 +11,7 @@ class EventsController < ApplicationController
       day = Date.parse(params[:day])
       @events = Event.where(:start_time => day.beginning_of_day..day.end_of_day).paginate(page: params[:page])
     else
-      @events = Event.order(:name).paginate(page: params[:page])
+      @events = Event.where(:start_time => DateTime.now..DateTime::Infinity.new).order(:start_time).paginate(page: params[:page])
     end 
   end
 

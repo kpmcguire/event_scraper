@@ -38,7 +38,7 @@ class Feed
 
         puts pholder
 
-        Venue.where(remote_id: pholder['remote_id']).first_or_create(pholder)
+        Venue.where(remote_id: pholder['remote_id']).first_or_create(pholder).update(pholder)
 
       end        
 

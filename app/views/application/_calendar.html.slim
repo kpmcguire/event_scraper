@@ -2,7 +2,7 @@
   span.hidden> = date.strftime("%B")
   => date.day
   span.hidden> = date.year
-  - events.take(3).each do |e|
+  - events.take(5).each do |e|
     p = link_to e.name, event_path(e.id)
   - if events.length > 3
     p
