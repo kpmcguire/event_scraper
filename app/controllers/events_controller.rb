@@ -5,13 +5,27 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @all_events = Event.all
+
+    fake_state = Venue.where(remote_id: 298929)
+    fake_haunt = Venue.where(remote_id: 298932)
+    fake_state_events = Event.where(venue_id: fake_state)
+    fake_haunt_events = Event.where(venue_id: fake_haunt)
+    
+    ids_to_exclude = [fake_state_events.first.venue_id, fake_haunt_events.first.venue_id]
+    
+    @all_events = Event.where.not(venue_id: ids_to_exclude).or(Event.where(venue_id: nil))
 
     if params[:day]
       day = Date.parse(params[:day])
-      @events = Event.where(:start_time => day.beginning_of_day..day.end_of_day).paginate(page: params[:page])
+      @events = Event
+      .where.not(venue_id: ids_to_exclude).or(Event.where(venue_id: nil))
+      .where(:start_time => day.beginning_of_day..day.end_of_day)
+      .paginate(page: params[:page])
     else
-      @events = Event.where(:start_time => DateTime.now..DateTime::Infinity.new).order(:start_time).paginate(page: params[:page])
+      @events = Event
+      .where.not(venue_id: ids_to_exclude).or(Event.where(venue_id: nil))
+      .where(:start_time => DateTime.now..DateTime::Infinity.new)
+      .order(:start_time).paginate(page: params[:page])
     end 
   end
 

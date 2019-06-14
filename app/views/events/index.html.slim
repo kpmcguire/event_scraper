@@ -33,7 +33,7 @@ table
         td = event.name
         td
           - if event.try(:description)
-            = event.description.truncate_words(20)
+            = sanitize(event.description.truncate_words(20), tags: [])
         td = event.url
         td = event.remote_id
         td = event.cost
