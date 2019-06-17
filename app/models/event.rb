@@ -17,4 +17,12 @@ class Event < ApplicationRecord
     ]
   end
 
+  def self.search(search)
+    if search
+      Event.where('LOWER(name) LIKE :q or LOWER(description) LIKE :q', q: "%#{search.downcase}%")
+    else
+      Event.none
+    end
+  end
+
 end

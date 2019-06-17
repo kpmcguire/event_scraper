@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     end
 
     collection do
+      get 'search'
+    end
+
+    collection do
       delete 'remove_all'
     end
   end 
@@ -28,6 +32,10 @@ Rails.application.routes.draw do
   resources :venues do
     member do
       get :delete
+    end
+
+    collection do
+      get 'search'
     end
 
     collection do

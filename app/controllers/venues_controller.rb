@@ -4,8 +4,26 @@ class VenuesController < ApplicationController
  
   # GET /venues
   # GET /venues.json
+
+
+  fake_state = Venue.where(remote_id: 298929)
+  fake_haunt = Venue.where(remote_id: 298932)
+
+  $ids_to_exclude = [fake_state.first.id, fake_haunt.first.id]
+
+  # print fake_state.name
+
   def index
-    @venues = Venue.order(:name).paginate(page: params[:page])
+    @venues = Venue.order(:name)
+    .where.not(id: $ids_to_exclude)
+    .paginate(page: params[:page])
+  end
+
+  def search
+
+    @search_results = Venue.search(params[:search])
+    .where.not(id: $ids_to_exclude)
+    .paginate(page: params[:page], per_page: 25)
   end
 
   # GET /venues/1

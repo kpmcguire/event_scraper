@@ -1,8 +1,15 @@
-h1 Listing events
+- if @day
+  h1 Events for #{@day.strftime("%B")} #{@day.day} #{@day.year}
+- else
+  h1 All Events
 
 - if session[:user_id]
   = form_tag(remove_all_events_path, method: :delete)
-    = submit_tag("Delete all")
+    = submit_tag "Delete all", :data => {:confirm => 'Are you sure?'}
+
+= form_tag search_events_path, :method => 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "search"
 
 table
   thead

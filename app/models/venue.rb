@@ -21,4 +21,12 @@ class Venue < ApplicationRecord
     ]
   end
 
+  def self.search(search)
+    if search
+      Venue.where('LOWER(name) LIKE :q or LOWER(description) LIKE :q', q: "%#{search.downcase}%")
+    else
+      Venue.none
+    end
+  end  
+
 end

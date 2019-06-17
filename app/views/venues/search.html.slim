@@ -1,0 +1,13 @@
+h1 Search Results
+
+= form_tag search_venues_path, :method => 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "search"
+
+#search-results
+  ul 
+    - @search_results.each do |venue|
+      li 
+        = link_to venue.name, venue
+
+= will_paginate @search_results
