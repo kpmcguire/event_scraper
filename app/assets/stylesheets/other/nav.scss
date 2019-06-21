@@ -23,6 +23,7 @@
   .navbar-menu {
     position: relative;
     top: -0.1em;
+    background-color: $main-brand;
   }
 
   a {
@@ -39,5 +40,10 @@
       background-color: darken($main-brand, 15);
     }
 
+  }
+
+  .navbar-burger {
+    position: relative;
+    top: 0.2em;
   }
 }

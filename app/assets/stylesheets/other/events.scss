@@ -4,6 +4,7 @@
   border-radius: 0.25em;
   padding: 0.5em;
   text-align: center;
+  width: 100px;
 
   * + * {
     margin-top: 0.5em;
@@ -26,7 +27,6 @@
   color: lighten(saturate($main-brand, 60), 5);
   font-weight: bold;
   margin: 0.25em;
-  width: 90px;
 } 
 
 .event-list {
