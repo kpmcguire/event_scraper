@@ -11,22 +11,36 @@ class EventsController < ApplicationController
   fake_haunt_events = Event.where(venue_id: fake_haunt)
 
   $ids_to_exclude = [fake_state_events.first.venue_id, fake_haunt_events.first.venue_id]
-
+  
   def index
     @all_events = Event.where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
 
-    if params[:day]
-      @day = Date.parse(params[:day])
-      @events = Event
-      .where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
-      .where(:start_time => @day.beginning_of_day..@day.end_of_day)
-      .paginate(page: params[:page])
-    else
-      @events = Event
-      .where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
-      .where(:start_time => DateTime.now..DateTime::Infinity.new)
-      .order(:start_time).paginate(page: params[:page])
-    end 
+    # if params[:day]
+    #   @day = Date.parse(params[:day])
+    #   @events = Event
+    #   .where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
+    #   .where(:start_time => @day.beginning_of_day..@day.end_of_day)
+    #   .paginate(page: params[:page])
+    # else
+    #   @events = Event
+    #   .where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
+    #   .where(:start_time => DateTime.now..DateTime::Infinity.new)
+    #   .order(:start_time).paginate(page: params[:page])
+    # end 
+  end
+
+  def day
+    @day = Date.parse(params[:day])
+    @events = Event
+    .where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
+    .where(:start_time => @day.beginning_of_day..@day.end_of_day)
+    .paginate(page: params[:page])
+  end
+
+  def featured_events
+    @featured_events = Event.all
+    .where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))
+    .select(&:featured_events)
   end
 
   def search
@@ -38,8 +52,14 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @organization = @event.organization
-    @venue = @event.venue
+    # @organization = @event.organization
+    # @venue = @event.venue
+    
+    # @venue_rating = @event.venue.try(:rating) ? @event.venue.rating : 0
+    # @org_rating = @event.organization.try(:rating) ? @event.organization.rating : 0
+
+
+    # @rating = @venue_rating + @org_rating
   end
 
   # GET /events/new

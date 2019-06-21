@@ -1,63 +1,19 @@
-- if @day
-  h1 Events for #{@day.strftime("%B")} #{@day.day} #{@day.year}
-- else
-  h1 All Events
-
 - if session[:user_id]
   = form_tag(remove_all_events_path, method: :delete)
     = submit_tag "Delete all", :data => {:confirm => 'Are you sure?'}
 
-= form_tag search_events_path, :method => 'get' do
-  = text_field_tag :search, params[:search]
-  = submit_tag "search"
-
-table
-  thead
-    tr
-      th Venue
-      th Organization
-      th Name
-      th Description
-      th Url
-      th Remote ID
-      th Cost
-      th Start date
-      th End date
-      th Show
-      - if session[:user_id]
-        th Edit
-        th Destroy
-
-  tbody
-    - @events.each do |event|
-      tr
-        td
-          - if event.try(:venue)
-            = link_to event.venue.name, venue_path(event.venue_id)
-        td
-          - if event.try(:organization)
-            = link_to event.organization.name, organization_path(event.organization_id)
-        td = event.name
-        td
-          - if event.try(:description)
-            = sanitize(event.description.truncate_words(20), tags: [])
-        td = event.url
-        td = event.remote_id
-        td = event.cost
-        td = event.start_time
-        td = event.end_time
-        td = link_to 'Show', event
-        - if session[:user_id]
-          td = link_to 'Edit', edit_event_path(event)
-          td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= will_paginate @events
-
 - if session[:user_id]
-  = link_to 'New Event', new_event_path
+    = link_to 'New Event', new_event_path
 
-h2 Calendar
+.columns
+    .column
+        h1 All Events Calendar    
+    .column
+        = render partial: "search_form"
+
+
+/ = form_tag search_events_path, :method => 'get' do
+/   = text_field_tag :search, params[:search]
+/   = submit_tag "search"
 
 = render partial: "calendar", locals: {events: @all_events}

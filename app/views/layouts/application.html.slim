@@ -1,19 +1,32 @@
 doctype html
 html
   head
-    title EventScraper
+    title The Ithaca Agenda
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' 
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .navigation
-      = link_to "Events", events_path
-      '  | 
-      = link_to "Venues ", venues_path
-      '  |       
-      = link_to "Organizations ", organizations_path
+    nav.navbar role="navigation"
+      .container
+        .navbar-brand
+          a.navbar-item href="/" The Ithaca Agenda
+          a.navbar-burger.burger role="button" aria-expanded="false" data-target="main-navigation"
+            - 3.times do
+              span aria-hidden="true"
+        #main-navigation.navbar-menu
+          .navbar-item 
+            = link_to "Featured Events", '/'
+          .navbar-item 
+            = link_to "All Events", events_path
+          .navbar-item 
+            = link_to "Venues ", venues_path
+          .navbar-item           
+            = link_to "Organizations ", organizations_path
+
     - if !flash[:notice].blank? 
       .notice
         = flash[:notice] 
-    = yield 
+    .main-content
+      .container
+        = yield 

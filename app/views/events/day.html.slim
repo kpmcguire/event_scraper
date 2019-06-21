@@ -1,48 +1,10 @@
-h1 Listing events
+.columns
+  .column
+    h1 Events for #{@day.strftime("%B")} #{@day.day} #{@day.year}
+  .column
+    = render partial: "search_form"
 
-= form_tag(remove_all_events_path, method: :delete)
-  = submit_tag("Delete all")
-
-table
-  thead
-    tr
-      th Venue
-      th Organization
-      th Name
-      th Description
-      th Url
-      th Cost
-      th Start date
-      th End date
-      th Show
-      th Edit
-      th Destroy
-
-  tbody
-    - @events.each do |event|
-      tr
-        td
-          - if event.try(:venue)
-            = link_to event.venue.name, venue_path(event.venue_id)
-        td
-          - if event.try(:organization)
-            = link_to event.organization.name, organization_path(event.organization_id)
-        td = event.name
-        td = event.description.truncate_words(20)
-        td = event.url
-        td = event.cost
-        td = event.start_time
-        td = event.end_time
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
+ul.event-list
+  = render :partial => @events
 
 = will_paginate @events
-
-= link_to 'New Event', new_event_path
-
-h2 Calendar
-
-= render partial: "calendar", locals: {events: @all_events}

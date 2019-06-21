@@ -1,0 +1,7 @@
+= form_with url: search_events_path, :method => 'get', :local => true, :class => 'field has-addons search-form' do |form|
+  = form.label :search, "Search All Events"
+  - html = form.text_field :search, value: params[:search]
+  .field.has-addons.search-form
+    = content_tag :div, html, :class => 'control'
+    - sub = form.submit "search", class: 'button'
+    = content_tag :div, sub, :class => 'control'

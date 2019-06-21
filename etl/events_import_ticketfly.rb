@@ -60,7 +60,7 @@ end
 ticketfly_venues = []
 
 ticketfly_venues << Venue.find_by(remote_id: 13897) # the haunt
-ticketfly_venues << Venue.find_by(remote_id: 3273) #state theater
+ticketfly_venues << Venue.find_by(remote_id: 3273) # state theater
 
 ticketfly_venues.each do |venue|
   if (venue.remote_id?)

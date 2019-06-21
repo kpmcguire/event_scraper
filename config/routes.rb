@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'access/attempt_login'
   get 'access/logout'
 
-  root :to => 'events#index'
+  root :to => 'events#featured_events'
 
   resources :users do
     member do
@@ -21,8 +21,16 @@ Rails.application.routes.draw do
     end
 
     collection do
+      get 'day'
+    end
+
+    collection do
       get 'search'
     end
+
+    collection do
+      get 'featured_events'
+    end    
 
     collection do
       delete 'remove_all'

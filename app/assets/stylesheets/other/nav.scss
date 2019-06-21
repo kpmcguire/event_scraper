@@ -1,0 +1,43 @@
+.navbar {
+  background-color: $main-brand;
+  padding-top: 0.45em;
+
+  .navbar-brand {
+    font-size: xx-large;
+    position: relative;
+    top: -0.15em;
+
+    a {
+      color: white;
+      font-family: $font-serif;
+      font-style: oblique;
+      font-weight: bold;
+
+      &:hover, &:focus {
+        background-color: darken($main-brand, 10);
+        text-decoration: underline;
+      }                 
+    }
+  }
+
+  .navbar-menu {
+    position: relative;
+    top: -0.1em;
+  }
+
+  a {
+    color: white;
+    // font-weight: bold;
+    padding: 0.25em 0.5em;;
+
+    &:hover, &:focus {
+      background-color: darken($main-brand, 10);
+      text-decoration: underline;
+    }
+
+    &:active {
+      background-color: darken($main-brand, 15);
+    }
+
+  }
+}

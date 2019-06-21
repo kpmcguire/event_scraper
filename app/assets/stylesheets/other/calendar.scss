@@ -1,0 +1,73 @@
+.calendar-heading {
+  padding: 1em 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-link {
+  &::after {
+    display: inline-block;
+    content: '➡️';
+    speak: none;
+    position: relative;
+    top: 0.1em;
+    margin-left: 0.2em;    
+  }
+}
+
+.previous-link {
+  &::before {
+    display: inline-block;
+    content: '⬅️ ';
+    speak: none;
+    position: relative;
+    top: 0.1em;
+    margin-right: 0.2em;
+  }
+}
+
+.main-content .simple-calendar {
+  .day {
+    height: 12vw;
+
+    p {
+      line-height: 1.2;
+      
+      a {
+        font-size: small;
+        padding: 0.75em;
+      }
+
+      &:not(.all-events-link) a {
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+        background-color: $brand-accent;
+        border-radius: 0.3em;
+        color: white;
+
+        &:hover, &:focus {
+          background-color: darken($brand-accent, 10);
+          text-decoration: underline;
+        }
+
+        &:active {
+          background-color: darken($brand-accent, 20)
+        }        
+      }
+
+      + p {
+        margin-top: 0.5em;
+      }
+
+      &.all-events-link {
+        margin-bottom: 0.75em;
+      }
+    }
+  }
+
+  .today {
+    background-color: desaturate(lighten($brand-accent, 65), 40)
+  }
+}

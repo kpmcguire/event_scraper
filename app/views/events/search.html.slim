@@ -1,17 +1,26 @@
-h1 Listing events
+.columns
+  .column
+      - search_title = (params[:search].present?) ? "“#{params[:search]}” Search Results" : "Showing all Events"
+      h1 = search_title
+  .column
+      = render partial: "search_form"
+
+
+
 
 - if session[:user_id]
   = form_tag(remove_all_events_path, method: :delete)
     = submit_tag "Delete all", :data => {:confirm => 'Are you sure?'}
 
-= form_tag search_events_path, :method => 'get' do
-  = text_field_tag :search, params[:search]
-  = submit_tag "search"
 
 #search-results
-  ul 
+  / ul 
+  /   - @search_results.each do |event|
+  /     li 
+  /       = link_to event.name, event
+
+  ul.event-list
     - @search_results.each do |event|
-      li 
-        = link_to event.name, event
+      = render partial: "event", locals: {event: event}
 
 = will_paginate @search_results

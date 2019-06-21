@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_13_203123) do
+ActiveRecord::Schema.define(version: 2019_06_18_145715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_203123) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.bigint "remote_id"
+    t.float "rating"
     t.index ["name"], name: "index_events_on_name"
     t.index ["organization_id"], name: "index_events_on_organization_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_203123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.float "rating"
     t.index ["name"], name: "index_organizations_on_name"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_06_13_203123) do
     t.float "longitude"
     t.string "slug"
     t.bigint "remote_id"
+    t.float "rating"
     t.index ["name"], name: "index_venues_on_name"
     t.index ["remote_id"], name: "index_venues_on_remote_id"
     t.index ["slug"], name: "index_venues_on_slug", unique: true

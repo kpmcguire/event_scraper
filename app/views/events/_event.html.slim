@@ -1,0 +1,26 @@
+li 
+  .event-list-item
+    time.date-wrapper datetime="#{event.start_time}"
+      span.date-month = event.start_time.strftime('%B')
+      span.date-date = event.start_time.strftime('%e')
+      span.date-day = event.start_time.strftime('%A')
+      / span.date-year = event.start_time.strftime('%Y')  
+    .event-info
+      h3 = link_to event.name, event
+      - if event.try(:organization) || event.try(:venue)
+        p 
+          - if event.try(:organization)
+            ' Organization:
+            span
+               = link_to event.organization.name, organization_path(event.organization_id)
+          - if event.try(:venue)
+            p 
+              ' Venue:
+              span< = link_to event.venue.name, venue_path(event.venue_id)
+
+      - if session[:user_id]
+        p 
+          span = link_to 'Edit', edit_event_path(event)
+          span< = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+        p
+          = event.rating 
