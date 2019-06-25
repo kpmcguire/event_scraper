@@ -65,7 +65,7 @@ class Feed
           pholder['organization_id'] = org.id
         end
 
-        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder).update(pholder)
+        Event.where(remote_id: pholder['remote_id']).first_or_create(pholder).update(pholder)   
 
       end        
 

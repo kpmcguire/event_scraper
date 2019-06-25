@@ -1,49 +1,49 @@
-p
-  strong> rating:
-  = @event.rating
-p
-  strong> remote id:
-  = @event.remote_id
-p
-  strong> Slug:
-  = @event.friendly_id
-p
-  strong> Venue:
-  - if @event.try(:venue)
-    = link_to @event.venue.name, venue_path(@event.venue_id)
-p
-  strong> Organization:
-  - if @event.try(:organization)
-    = link_to @event.organization.name, organization_path(@event.organization_id)  
-p
-  strong> Name:
-  = @event.name
-p
-  strong> Description:
-  = @event.description.html_safe
+.show
+  h1 = @event.name
+  .columns
+    .column
+      - if session[:user_id]
+        p
+          strong> rating:
+          = @event.rating
+        p
+          strong> remote id:
+          = @event.remote_id
+        p
+          strong> Slug:
+          = @event.friendly_id
+      - if @event.try(:venue)    
+        p
+          strong> Venue:
+          -  if @event.venue.present? 
+            = link_to @event.venue.name, venue_path(@event.venue_id)
+      p
+        strong> Organization:
+        - if @event.try(:organization)
+          = link_to @event.organization.name, organization_path(@event.organization_id)  
+      p
+        strong> Description:
+        = sanitize @event.description, tags: %w(a br ul li)
 
-p
-  strong> Url:
-  = @event.url
+      p
+        strong> Link:
+        = link_to @event.name, @event.url
 
-p
-  strong> Cost:
-  = @event.cost
-p
-  strong> Start date:
-  = @event.start_time
-p
-  strong> End date:
-  = @event.end_time
-p
-  strong> Url:
-  = @event.url
+      - if @event.cost.present? && @event.cost != '0'
+        p
+          strong> Cost:
+          = @event.cost
 
-- if @event.try(:venue)
+      p
+        strong> Start:
+        = @event.start_time.strftime("%B %d, %Y – %l:%M%p")
+      - if @event.try(:end_time)    
+        p
+          strong> End date:
+          = @event.end_time.strftime("%B %d, %Y – %l:%M%p")
 
-  = render partial: "map", locals: {latitude: @event.venue.latitude, longitude: @event.venue.longitude, name: @event.venue.name}
-
-
-=> link_to 'Edit', edit_event_path(@event)
-'|
-=< link_to 'Back', events_path
+      - if session[:user_id]
+        = link_to 'Edit', edit_event_path(@event)
+    - if @event.try(:venue)
+      .column
+          = render partial: "map", locals: {latitude: @event.venue.latitude, longitude: @event.venue.longitude, name: @event.venue.name}  

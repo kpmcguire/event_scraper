@@ -6,7 +6,7 @@ li
       span.date-day = event.start_time.strftime('%A')
       / span.date-year = event.start_time.strftime('%Y')  
     .event-info
-      h3 = link_to event.name, event
+      h2 = link_to event.name, event
       - if event.try(:organization) || event.try(:venue)
         p 
           - if event.try(:organization)

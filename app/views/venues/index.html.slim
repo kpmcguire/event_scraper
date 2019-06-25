@@ -1,44 +1,49 @@
-h1 Listing venues
-
+.columns
+  .column
+    h1 venues
+  .column
+    = render partial: "search_form"
+ 
 - if session[:user_id]
   = form_tag(remove_all_venues_path, method: :delete)
     = submit_tag "Delete all", :data => {:confirm => 'Are you sure?'}
 
-= form_tag search_venues_path, :method => 'get' do
-  = text_field_tag :search, params[:search]
-  = submit_tag "search"    
+ul.venue-list
+  - @venues.each do |venue|
+    li = link_to venue.name, venue
 
-table
-  thead
-    tr
-      th Name
-      th Address
-      th Description
-      th Url
-      th Remote ID
-      th Show
-      - if session[:user_id]
-        th Edit
-        th Destroy
 
-  tbody
-    - @venues.each do |venue|
-      tr
-        td = venue.name
-        td = venue.address
-        td = venue.description
-        td = venue.url
-        td
-          - if venue.try(:remote_id)
-            = venue.remote_id
-        td = link_to 'Show', venue
-        - if session[:user_id]
-          td = link_to 'Edit', edit_venue_path(venue)
-          td = link_to 'Destroy', venue, data: { confirm: 'Are you sure?' }, method: :delete
+/ table
+/   thead
+/     tr
+/       th Name
+/       th Address
+/       th Description
+/       th Url
+/       th Remote ID
+/       th Show
+/       - if session[:user_id]
+/         th Edit
+/         th Destroy
 
-br
+/   tbody
+/     - @venues.each do |venue|
+/       tr
+/         td = venue.name
+/         td = venue.address
+/         td = venue.description
+/         td = venue.url
+/         td
+/           - if venue.try(:remote_id)
+/             = venue.remote_id
+/         td = link_to 'Show', venue
+/         - if session[:user_id]
+/           td = link_to 'Edit', edit_venue_path(venue)
+/           td = link_to 'Destroy', venue, data: { confirm: 'Are you sure?' }, method: :delete
 
-= will_paginate @venues
+/ br
+
+= bulma_will_paginate @venues
 
 - if session[:user_id]
   = link_to 'New Venue', new_venue_path

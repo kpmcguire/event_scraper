@@ -6,6 +6,7 @@ html
     = csp_meta_tag
     = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' 
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png'
   body
     nav.navbar role="navigation"
       .container
@@ -21,8 +22,9 @@ html
             = link_to "All Events", events_path
           .navbar-item 
             = link_to "Venues ", venues_path
-          .navbar-item           
-            = link_to "Organizations ", organizations_path
+          - if session[:user_id]
+            .navbar-item           
+              = link_to "Organizations ", organizations_path
     - content_for :javascript do
         javascript: 
           document.addEventListener('DOMContentLoaded', () => {
@@ -57,3 +59,21 @@ html
       .container
         = yield 
         = yield :javascript
+    footer.footer
+      .container
+        .content 
+          p 
+            em>The Ithaca Agenda 
+            ' pulls events from all over the place, and tries to show you only the best quality events. Sick of seeing events that are only of interest to 7th year theoretical philologists? Me too. Try 
+            = link_to "Featured Events", root_path
+            ' . If you are a 7th year theoretical philologist, check out 
+            = link_to "All Events", events_path
+            ' .
+    .subfooter
+      .container
+        .content
+          ' ©
+          => Time.current.year
+          ' The Ithaca Agenda      
+        
+

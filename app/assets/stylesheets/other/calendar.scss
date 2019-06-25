@@ -5,27 +5,27 @@
   justify-content: space-between;
 }
 
-.next-link {
-  &::after {
-    display: inline-block;
-    content: '➡️';
-    speak: none;
-    position: relative;
-    top: 0.1em;
-    margin-left: 0.2em;    
-  }
-}
+// .next-link {
+//   &::after {
+//     display: inline-block;
+//     content: '➡️';
+//     speak: none;
+//     position: relative;
+//     top: 0.1em;
+//     margin-left: 0.2em;    
+//   }
+// }
 
-.previous-link {
-  &::before {
-    display: inline-block;
-    content: '⬅️ ';
-    speak: none;
-    position: relative;
-    top: 0.1em;
-    margin-right: 0.2em;
-  }
-}
+// .previous-link {
+//   &::before {
+//     display: inline-block;
+//     content: '⬅️ ';
+//     speak: none;
+//     position: relative;
+//     top: 0.1em;
+//     margin-right: 0.2em;
+//   }
+// }
 
 .main-content .simple-calendar {
   .day {
@@ -43,31 +43,70 @@
         display: inline-block;
         text-decoration: none;
         width: 100%;
-        background-color: $brand-accent;
+        background-color: saturate(lighten($brand-accent, 20), 20);
+        border: 1px solid $brand-accent;
         border-radius: 0.3em;
-        color: white;
+        color: darken($main-brand, 10);
 
         &:hover, &:focus {
-          background-color: darken($brand-accent, 10);
+          background-color: saturate(lighten($brand-accent, 30), 30);
           text-decoration: underline;
         }
 
         &:active {
-          background-color: darken($brand-accent, 20)
+          background-color: lighten($brand-accent, 20)
         }        
       }
 
       + p {
-        margin-top: 0.5em;
+        margin-top: 0.25em;
       }
 
       &.all-events-link {
-        margin-bottom: 0.75em;
+        // margin-bottom: 0.75em;
+
+        a {
+          display: inline-block;
+        }
       }
     }
   }
 
   .today {
-    background-color: desaturate(lighten($brand-accent, 65), 40)
+    background-color: desaturate(lighten($main-brand, 65), 40)
+  }
+
+  .next-month {
+    background-color: lighten(gray, 45);
+  }
+
+  @include for-mobile {
+    .calendar-heading {
+      flex-wrap: wrap;
+
+      .calendar-title {
+        order: -1;
+        width: 100%;
+      }
+    }
+
+    .day {
+      display: none;
+
+      &.has-events {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    tbody, table, tr, td {
+      display: block;
+      width: 100%;
+    }
+
+    thead {
+      display: none;
+    }
   }
 }

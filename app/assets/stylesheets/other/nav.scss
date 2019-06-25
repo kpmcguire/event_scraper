@@ -1,11 +1,31 @@
 .navbar {
-  background-color: $main-brand;
+  background-color: $brand-accent;
   padding-top: 0.45em;
 
+  @include for-mobile {
+    padding-top: 0;
+  }
+
   .navbar-brand {
-    font-size: xx-large;
+    font-size: 1.8em;
     position: relative;
-    top: -0.15em;
+    background-color: $main-brand;
+    top: -1em;
+    margin-bottom: -1.65em;
+    padding: 1em 0.75em 0.4em;
+    transform: rotate(-3deg);
+
+    @include for-mobile {
+      position: static;
+      top: 0;
+      margin-bottom: 0;
+      transform: rotate(0);
+      padding: 0.4em 0.75em;
+    }
+
+    .navbar-item {
+      top: -0.1em;
+    }
 
     a {
       color: white;
@@ -14,7 +34,8 @@
       font-weight: bold;
 
       &:hover, &:focus {
-        background-color: darken($main-brand, 10);
+        color: white;
+        // background-color: darken($main-brand, 20);
         text-decoration: underline;
       }                 
     }
@@ -23,27 +44,32 @@
   .navbar-menu {
     position: relative;
     top: -0.1em;
-    background-color: $main-brand;
+    margin-left: 1em;
+    box-shadow: none;
+
+    @include for-mobile {
+      background-color: $brand-accent;
+      top: 0;
+    }
+  }
+
+  .navbar-item {
+    padding: 0;
+    top: -0.1em;
   }
 
   a {
-    color: white;
+    color: $main-brand;
     // font-weight: bold;
-    padding: 0.25em 0.5em;;
+    padding: 0.4em 0.5em;
 
     &:hover, &:focus {
-      background-color: darken($main-brand, 10);
       text-decoration: underline;
+      color: darken($main-brand, 10);
     }
 
     &:active {
-      background-color: darken($main-brand, 15);
+      color: darken($main-brand, 20);
     }
-
-  }
-
-  .navbar-burger {
-    position: relative;
-    top: 0.2em;
   }
 }

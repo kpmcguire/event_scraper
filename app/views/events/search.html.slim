@@ -23,4 +23,4 @@
     - @search_results.each do |event|
       = render partial: "event", locals: {event: event}
 
-= will_paginate @search_results
+= bulma_will_paginate @search_results

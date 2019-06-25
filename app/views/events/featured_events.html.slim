@@ -1,3 +1,7 @@
-h1 Featured Events Calendar
+.columns
+  .column
+      h1 Featured Events Calendar
+  .column
+      = render partial: "search_form"
 
 = render partial: "calendar", locals: {events: @featured_events}

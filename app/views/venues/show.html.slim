@@ -1,49 +1,62 @@
-p
-  strong> Rating:
-  = @venue.rating
+.show
+  h1 = @venue.name
+  .columns
+    .column
+      - if session[:user_id]
+        p
+          strong> Rating:
+          = @venue.rating
 
-p
-  strong> Slug:
-  = @venue.friendly_id
+        p
+          strong> Slug:
+          = @venue.friendly_id
 
-p
-  strong> Name:
-  = @venue.name
-p
-  strong> ID:
-  = @venue.id  
-p
-  strong> Address:
-  = @venue.address
+        p
+          strong> ID:
+          = @venue.id  
 
-p
-  strong> Lat Long:
-  = @venue.latitude
-  | , 
-  = @venue.longitude
+        - if @venue.try(:remote_id)  
+        p
+          strong> Remote ID:
+          = @venue.remote_id
 
-= render partial: "map", locals: {latitude: @venue.latitude, longitude: @venue.longitude, name: @venue.name}
+      p
+        strong> Address:
+        = @venue.address
 
-p
-  strong> Description:
-  = @venue.description
-p
-  strong> Url:
-  = @venue.url
-  - if @venue.try(:remote_id)  
-    p
-      strong> Remote ID:
-      = @venue.remote_id
-p 
-  strong> Events:
-ul
-  - @venue.events.each do |e|
-    li 
-      = link_to e.name, event_path(e.id)
+      p
+        strong> Lat Long:
+        = @venue.latitude
+        | , 
+        = @venue.longitude
+
+      p
+        strong> Description:
+        = sanitize @venue.description, tags: %w(a br ul li)
+
+      p
+        strong> Link:
+        = link_to @venue.name, @venue.url
+
+        - if session[:user_id]
+
+          = link_to 'Edit', edit_venue_path(@venue)
 
 
-=> link_to 'Edit', edit_venue_path(@venue)
-'|
-=< link_to 'Back', venues_path
+    - if @venue.try(:latitude)
+      .column
+        = render partial: "map", locals: {latitude: @venue.latitude, longitude: @venue.longitude, name: @venue.name}
 
-= render partial: "calendar", locals: {events: @venue.events}
+  - if @venue.events.any?
+    .columns
+      .column.is-4
+        p 
+          strong> All Events at #{@venue.name}:
+
+          ul.event-list
+            - @venue.events.each do |e|
+              = render partial: "events/event-small", locals: {event: e}
+      - if @venue.events.any?                
+        .column.is-8  
+          = render partial: "calendar", locals: {events: @venue.events}
+

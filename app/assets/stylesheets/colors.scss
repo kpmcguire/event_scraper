@@ -1,3 +1,11 @@
 $main-brand: #008441;
-$brand-accent: #4d7a17;
+$brand-accent: #a7e051;
 $link-color: #0066ff;
+
+@mixin for-mobile {
+  @media (max-width: 1024px) {@content;}
+}
+
+@mixin for-desktop {
+  @media (min-width: 1024px) {@content;}
+}

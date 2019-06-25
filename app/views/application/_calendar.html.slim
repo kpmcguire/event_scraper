@@ -4,7 +4,7 @@
     => date.day
     span.hidden> = date.year
   - events.take(5).each do |e|
-    p = link_to e.name, event_path(e.id)
+    p = link_to e.name, event_path(e)
   - if events.length > 3
     p.all-events-link
       = link_to day_events_path(:day => date.strftime("%F")) do

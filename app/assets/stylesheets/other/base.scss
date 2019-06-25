@@ -52,3 +52,34 @@ body {
     }
   }
 }
+
+.show {
+  p + p {
+    margin-top: 1em;
+  }
+}
+
+.footer {
+  background-color: lighten($brand-accent, 20);
+  color: darken($main-brand, 20);
+  padding: 2em 1em;
+
+  a {
+    color: $link-color;
+    text-decoration: underline;
+
+    &:focus, &:hover {
+      color: darken($link-color, 10);
+    }
+
+    &:active {
+      color: darken($link-color, 20);
+    }
+  }
+}
+
+.subfooter {
+  background-color: $main-brand;
+  color: white;
+  padding: 2em 1em;
+}

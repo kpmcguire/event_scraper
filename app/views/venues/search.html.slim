@@ -1,8 +1,10 @@
-h1 Search Results
 
-= form_tag search_venues_path, :method => 'get' do
-  = text_field_tag :search, params[:search]
-  = submit_tag "search"
+.columns
+  .column
+    - search_title = (params[:search].present?) ? "“#{params[:search]}” Search Results" : "Showing all Venues"
+    h1 = search_title
+  .column
+      = render partial: "search_form"
 
 #search-results
   ul 
@@ -10,4 +12,4 @@ h1 Search Results
       li 
         = link_to venue.name, venue
 
-= will_paginate @search_results
+= bulma_will_paginate @search_results

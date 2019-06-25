@@ -16,7 +16,7 @@ class VenuesController < ApplicationController
   def index
     @venues = Venue.order(:name)
     .where.not(id: $ids_to_exclude)
-    .paginate(page: params[:page])
+    .paginate(page: params[:page], per_page: 25)
   end
 
   def search
