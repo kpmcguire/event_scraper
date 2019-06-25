@@ -3,8 +3,8 @@
 
   .date-wrapper {
     width: 20%;
-    max-width: 100px;
-    min-width: 120px;
+    max-width: 120px;
+    min-width: 100px;
   }
 }
 
@@ -24,7 +24,6 @@
   * + * {
     margin-top: 0.5em;
   }
-
   
 }
 
@@ -67,6 +66,10 @@
       margin-top: 0;
       font-family: $font-sans-serif;
       font-size: larger;
+
+      @include for-mobile {
+        font-size: medium;
+      }
     }
   }
 }

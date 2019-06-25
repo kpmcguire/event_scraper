@@ -22,10 +22,6 @@
         - if @event.try(:organization)
           = link_to @event.organization.name, organization_path(@event.organization_id)  
       p
-        strong> Description:
-        = sanitize @event.description, tags: %w(a br ul li)
-
-      p
         strong> Link:
         = link_to @event.name, @event.url
 
@@ -44,6 +40,10 @@
 
       - if session[:user_id]
         = link_to 'Edit', edit_event_path(@event)
+      p
+        strong> Description:
+        = sanitize @event.description, tags: %w(a br ul li)
+
     - if @event.try(:venue)
       .column
           = render partial: "map", locals: {latitude: @event.venue.latitude, longitude: @event.venue.longitude, name: @event.venue.name}  

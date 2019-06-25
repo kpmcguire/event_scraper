@@ -30,6 +30,9 @@ body {
     font-size: 2em;
     font-weight: bold;
     color: $main-brand;
+    @include for-mobile {
+      font-size: 1.4em;
+    }
   }
 
   h2 {

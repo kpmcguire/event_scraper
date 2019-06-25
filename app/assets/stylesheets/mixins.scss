@@ -1,3 +1,11 @@
+@mixin for-mobile {
+  @media (max-width: 1024px) {@content;}
+}
+
+@mixin for-desktop {
+  @media (min-width: 1024px) {@content;}
+}
+
 @function strip-unit($value) {
   @return $value / ($value * 0 + 1);
 }

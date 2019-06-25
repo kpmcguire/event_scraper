@@ -37,6 +37,9 @@
       p
         strong> Link:
         = link_to @venue.name, @venue.url
+      p
+        strong> Description:
+        = sanitize @venue.description, tags: %w(a br ul li)
 
         - if session[:user_id]
 
