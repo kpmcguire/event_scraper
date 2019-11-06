@@ -9,6 +9,10 @@ namespace :events do
     end
 
     if Time.now.sunday?
+      system("ruby #{Rails.root}/etl/remove_old_data.rb")
+    end
+
+    if Time.now.sunday?
       system("ruby #{Rails.root}/etl/venues_import_localist.rb")
     end    
   end
