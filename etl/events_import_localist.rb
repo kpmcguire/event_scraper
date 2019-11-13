@@ -43,9 +43,9 @@ class Feed
         "description" => "description",
       }
 
-      @response['events'].each_with_index do |e, i|
+      @response['events'].each do |e|
         
-        if i == 1 
+
         e['event']['event_instances'].each do |ev| 
           e['event']['start'] = ev['event_instance']['start']
         end      
@@ -80,8 +80,6 @@ class Feed
         event_query = pholder['name']
         Event.where('lower(name) = ?', event_query.downcase).first_or_create(pholder).update(pholder)   
       
-        end
-
       end        
 
       sleep 10
