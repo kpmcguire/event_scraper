@@ -1,6 +1,8 @@
-require_relative '../config/environment'
+require_relative 'shared'
 
-def do_something
+consolidate_state_theatre_events
+
+def delete_old_events
 
   @old_events = Event.where(:start_time => 6.months.ago..1.months.ago)
   @empty_venues = Venue.left_outer_joins(:events).where(events: {id: nil})
@@ -9,4 +11,4 @@ def do_something
   @empty_venues.destroy_all
 end
 
-do_something
+delete_old_events

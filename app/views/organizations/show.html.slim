@@ -14,9 +14,11 @@ p
 p
   strong> Events: 
 
-ul
-  - @organization.events.each do |e|
+
+ul.event-list
+  - @events.each do |e|
     li 
-      = link_to e.name, event_path(e.id)
+      = render partial: "events/event-small", locals: {event: e}
+= bulma_will_paginate @events
 
 = render partial: "calendar", locals: {events: @organization.events}

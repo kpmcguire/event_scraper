@@ -1,11 +1,11 @@
 .small {
   font-size: 0.75em;
 
-  .date-wrapper {
-    width: 20%;
-    max-width: 120px;
-    min-width: 100px;
-  }
+  // .date-wrapper {
+  //   width: 20%;
+  //   max-width: 120px;
+  //   min-width: 100px;
+  // }
 }
 
 .date-wrapper {
@@ -13,13 +13,9 @@
   background-color: desaturate(lighten($main-brand, 70), 40);
   border-radius: 0.25em;
   padding: 0.5em 1em;
-  text-align: center;
-  width: 10%;
-  max-width: 150px;
-  min-width: 80px;
-  
-  @include fluid-units($unit: 'font-size', $min_size: 8px, $max_size: 18px);
-
+  text-align: center;  
+  @include fluid-units($unit: 'font-size', $min_size: 12px, $max_size: 18px);
+  width: 100%;
 
   * + * {
     margin-top: 0.5em;
@@ -47,32 +43,40 @@
 
 .event-list {
   list-style-type: none;
+  display: table;
   // background-color: #545c66;
+  border-spacing: 0 1em;
 
   li + li {
     margin-top: 1em;
   }
+
+  li {
+    display: table-row;
+  }
 }
 
-.event-list-item {
-  display: flex;
-  align-items: flex-start;
+.event-time {
+  display: table-cell;
+}
 
-  .event-info {
-    margin-left: 1em;
+.event-info {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 1em;
+  margin-top: 0;
+
+  h2 {
     margin-top: 0;
+    font-family: $font-sans-serif;
+    font-size: large;
 
-    h2 {
-      margin-top: 0;
-      font-family: $font-sans-serif;
-      font-size: larger;
-
-      @include for-mobile {
-        font-size: medium;
-      }
+    @include for-mobile {
+      font-size: medium;
     }
   }
 }
+
 
 .search-form.has-addons {
   flex-wrap: wrap;

@@ -15,7 +15,7 @@
           strong> ID:
           = @venue.id  
 
-        - if @venue.try(:remote_id)  
+      - if @venue.try(:remote_id)  
         p
           strong> Remote ID:
           = @venue.remote_id
@@ -50,15 +50,17 @@
       .column
         = render partial: "map", locals: {latitude: @venue.latitude, longitude: @venue.longitude, name: @venue.name}
 
-  - if @venue.events.any?
+  - if @venue_events.any?
     .columns
       .column.is-4
         p 
           strong> All Events at #{@venue.name}:
 
           ul.event-list
-            - @venue.events.each do |e|
+            - @venue_events.each do |e|
               = render partial: "events/event-small", locals: {event: e}
+          = bulma_will_paginate @venue_events
+
       - if @venue.events.any?                
         .column.is-8  
           = render partial: "calendar", locals: {events: @venue.events}

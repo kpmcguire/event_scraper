@@ -5,12 +5,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
 
-  fake_state = Venue.where(remote_id: 298929)
-  fake_haunt = Venue.where(remote_id: 298932)
-  fake_state_events = Event.where(venue_id: fake_state)
-  fake_haunt_events = Event.where(venue_id: fake_haunt)
+  # fake_state = Venue.where(remote_id: 298929)
+  # fake_haunt = Venue.where(remote_id: 298932)
+  # fake_state_events = Event.where(venue_id: fake_state)
+  # fake_haunt_events = Event.where(venue_id: fake_haunt)
 
-  $ids_to_exclude = [fake_state_events.first.venue_id, fake_haunt_events.first.venue_id]
+  # $ids_to_exclude = [fake_state_events.first.venue_id, fake_haunt_events.first.venue_id]
   
   def index
     @all_events = Event.where.not(venue_id: $ids_to_exclude).or(Event.where(venue_id: nil))

@@ -10,6 +10,7 @@ class OrganizationsController < ApplicationController
   def show
     # @organization = Organization.friendly.find(params[:id])
     # @event = Event.find(params[:event_id])
+    @events = @organization.events.paginate(page: params[:page], per_page: 25)
   end  
 
   def new

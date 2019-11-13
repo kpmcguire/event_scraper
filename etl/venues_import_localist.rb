@@ -36,9 +36,8 @@ class Feed
 
         pholder.keys.each { |k| pholder[ mappings[k] ] = pholder.delete(k) if mappings[k] }
 
-        puts pholder
-
-        Venue.where(remote_id: pholder['remote_id']).first_or_create(pholder).update(pholder)
+        venue_query = pholder['name']
+        Venue.where('lower(name) = ?', venue_query.downcase).first_or_create(pholder).update(pholder)
 
       end        
 
@@ -56,3 +55,4 @@ end
 ithaca_college = Feed.new(ITHACA_LOCALIST_URI, 'localist-ithaca')
 cornell_university = Feed.new(CORNELL_LOCALIST_URI, 'localist-cornell')
 visit_ithaca = Feed.new(VISITITHACA_LOCALIST_URI, 'localist-visitithaca')
+consolidate_state_theatre_events

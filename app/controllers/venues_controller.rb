@@ -6,10 +6,10 @@ class VenuesController < ApplicationController
   # GET /venues.json
 
 
-  fake_state = Venue.where(remote_id: 298929)
-  fake_haunt = Venue.where(remote_id: 298932)
+  # fake_state = Venue.where(remote_id: 298929)
+  # fake_haunt = Venue.where(remote_id: 298932)
 
-  $ids_to_exclude = [fake_state.first.id, fake_haunt.first.id]
+  # $ids_to_exclude = [fake_state.first.id, fake_haunt.first.id]
 
   # print fake_state.name
 
@@ -20,7 +20,6 @@ class VenuesController < ApplicationController
   end
 
   def search
-
     @search_results = Venue.search(params[:search])
     .where.not(id: $ids_to_exclude)
     .paginate(page: params[:page], per_page: 25)
@@ -29,6 +28,7 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
+    @venue_events = Event.where(venue_id: @venue.id).paginate(page: params[:page], per_page: 25)
   end
 
   # GET /venues/new
